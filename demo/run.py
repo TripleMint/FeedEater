@@ -1,10 +1,8 @@
 import sys
 import os
 path = os.path.split(os.path.split(os.path.dirname(os.path.abspath(__file__)))[0])[0]
-print path
 sys.path.append(path)
 
-print sys.path
 from FeedEater import FeedEater
 from FeedEater.normalize import DataCleansingModelProxy
 from FeedEater.translate import field, Translator
@@ -23,8 +21,8 @@ class Person(object):
 
     def __init__(self):
 
-        self._first_name = ''
-        self._last_name = ''
+        self.first_name = ''
+        self.last_name = ''
         self.location = ''
         self.profession = ''
 
@@ -38,36 +36,9 @@ class Person(object):
         self.location = location
         self.profession = profession
 
-    @property
-    def first_name(self):
-
-        return self._first_name
-
-    @first_name.setter
-    def first_name(self, value):
-
-        print 'fn', value
-        for frame in inspect.stack():
-            print frame
-        self._first_name = value
-
-    @property
-    def last_name(self):
-
-        return self._last_name
-
-    @last_name.setter
-    def last_name(self, value):
-
-        print 'ln', value
-        for frame in inspect.stack():
-            print frame
-        self._last_name = value
-
     def save(self):
 
         file_path = os.path.join(files_path, self.first_name + self.last_name)
-        print file_path
         with open(file_path, 'w') as f:
             f.write(' '.join([self.first_name,
                               self.last_name,
@@ -76,12 +47,9 @@ class Person(object):
 
 def normalize_name(name):
 
-    print 'n', name
     if name:
-        print name[0].upper() + name[1:].lower()
         return name[0].upper() + name[1:].lower()
     else:
-        print name
         return name
 
 class PersonProxy(DataCleansingModelProxy):
@@ -102,7 +70,6 @@ class PersonProxy(DataCleansingModelProxy):
         person = Person()
         person.first_name = normalize_name(first_name)
         person.last_name = normalize_name(last_name)
-        print 'gc', person.first_name, person.last_name
         try:
             person.load()
         except IOError:
