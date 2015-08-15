@@ -1,0 +1,20 @@
+[   
+    {
+        "first_name": "charles",
+        "middle_name": "manfred",
+        "last_name": "taggerty",
+        "location": "boston"
+    },
+    {
+        "first_name": "robert",
+        "middle_name": "norris",
+        "last_name": "johnson",
+        "location": "thyboron"
+    },
+    {
+        "first_name": "filbert",
+        "middle_name": "thomas",
+        "last_name": "blatt",
+        "location": "singapore"
+    }
+]

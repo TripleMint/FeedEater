@@ -43,7 +43,7 @@ class DataCleansingModelProxy(object):
 
         if isinstance(value, DataCleansingModelProxy):
             value = value.instance
-        if name in self.__dict__:
+        if name in self.__dict__ or name in self.__class__.__dict__:
             attr = getattr(self, name)
             if callable(attr):
                 setattr(self.instance, name, attr(value))
